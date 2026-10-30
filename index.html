@@ -1,118 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Generator</title>
+    <title>Meri Dukaan - Videos & Products</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #121212;
             color: #ffffff;
-            text-align: center;
-            padding: 20px;
             margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #00bcd4;
         }
         .container {
             max-width: 500px;
-            margin: auto;
+            margin: 0 auto;
             background: #1e1e1e;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        h2 { color: #00bcd4; }
-        textarea {
+        video, img {
             width: 100%;
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: #2a2a2a;
-            color: white;
-            box-sizing: border-box;
-            height: 100px;
-            resize: none;
-        }
-        button {
-            background-color: #00bcd4;
-            color: black;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-        }
-        button:hover { background-color: #008ba3; }
-        .output-box {
-            margin-top: 20px;
-            min-height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #outputImage {
-            max-width: 100%;
             border-radius: 10px;
-            display: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-top: 15px;
         }
-        #loadingText {
-            display: none;
-            color: #00bcd4;
+        .whatsapp-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Free AI Image Generator</h2>
-    <p>Niche English me likhein aapko kaisi photo chahiye</p>
-    
-    <textarea id="promptInput" placeholder="Jaise ki: A futuristic city with flying cars..."></textarea>
-    
-    <button onclick="generateImage()">Photo Banayein</button>
-    
-    <div class="output-box">
-        <p id="loadingText">Photo ban rahi hai, thoda intezar karein...</p>
-        <img id="outputImage" src="" alt="Generated Image">
+    <div class="container">
+        <h1>Meri Dukaan / Business</h1>
+        <p>Yahan meri cheezein aur videos dekhein aur order karne ke liye rabta karein!</p>
+
+        <!-- Yahan aap apni Video laga sakte hain -->
+        <h3>Meri Video:</h3>
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            Aapka browser video ko support nahi karta.
+        </video>
+
+        <!-- Yahan aap apni Photo laga sakte hain -->
+        <h3>Meri Photo / Product:</h3>
+        <img src="photo.jpg" alt="Product Image">
+
+        <br>
+        <!-- Aapka WhatsApp Number yahan set kar diya gaya hai -->
+        <a class="whatsapp-btn" href="https://wa.me/923257018443?text=Bhai%20mujhe%20yeh%20cheez%20chahiye%20order%20karni%20hai" target="_blank">
+            WhatsApp par Order Karein
+        </a>
     </div>
-</div>
-
-<script>
-    function generateImage() {
-        const prompt = document.getElementById("promptInput").value.trim();
-        const outputImage = document.getElementById("outputImage");
-        const loadingText = document.getElementById("loadingText");
-
-        if (prompt === "") {
-            alert("Kripya pehle kuch likhein!");
-            return;
-        }
-
-        loadingText.style.display = "block";
-        outputImage.style.display = "none";
-
-        const encodedPrompt = encodeURIComponent(prompt);
-        const imageUrl = `https://image.pollinations.ai/p/${encodedPrompt}?width=1080&height=1080&nologo=true`;
-
-        outputImage.src = imageUrl;
-
-        outputImage.onload = function() {
-            loadingText.style.display = "none";
-            outputImage.style.display = "block";
-        };
-
-        outputImage.onerror = function() {
-            loadingText.style.display = "none";
-            alert("Photo banane me koi dikkat aayi, dobara koshish karein.");
-        };
-    }
-</script>
 
 </body>
 </html>
+
