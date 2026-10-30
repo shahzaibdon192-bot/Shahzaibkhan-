@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        h2 { color: #00bcd4; }
+        textarea {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #2a2a2a;
+            color: white;
+            box-sizing: border-box;
+            height: 100px;
+            resize: none;
+        }
+        button {
+            background-color: #00bcd4;
+            color: black;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+        }
+        button:hover { background-color: #008ba3; }
+        .output-box {
+            margin-top: 20px;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #outputImage {
+            max-width: 100%;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        #loadingText {
+            display: none;
+            color: #00bcd4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Free AI Image Generator</h2>
+    <p>Niche English me likhein aapko kaisi photo chahiye</p>
+    
+    <textarea id="promptInput" placeholder="Jaise ki: A futuristic city with flying cars..."></textarea>
+    
+    <button onclick="generateImage()">Photo Banayein</button>
+    
+    <div class="output-box">
+        <p id="loadingText">Photo ban rahi hai, thoda intezar karein...</p>
+        <img id="outputImage" src="" alt="Generated Image">
+    </div>
+</div>
+
+<script>
+    function generateImage() {
+        const prompt = document.getElementById("promptInput").value.trim();
+        const outputImage = document.getElementById("outputImage");
+        const loadingText = document.getElementById("loadingText");
+
+        if (prompt === "") {
+            alert("Kripya pehle kuch likhein!");
+            return;
+        }
+
+        loadingText.style.display = "block";
+        outputImage.style.display = "none";
+
+        const encodedPrompt = encodeURIComponent(prompt);
+        const imageUrl = `https://image.pollinations.ai/p/${encodedPrompt}?width=1080&height=1080&nologo=true`;
+
+        outputImage.src = imageUrl;
+
+        outputImage.onload = function() {
+            loadingText.style.display = "none";
+            outputImage.style.display = "block";
+        };
+
+        outputImage.onerror = function() {
+            loadingText.style.display = "none";
+            alert("Photo banane me koi dikkat aayi, dobara koshish karein.");
+        };
+    }
+</script>
+
+</body>
+</html>
